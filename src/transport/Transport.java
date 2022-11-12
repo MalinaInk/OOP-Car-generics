@@ -32,6 +32,10 @@ public abstract class Transport {
         System.out.println("Автомобиль завершает движение...");
     }
 
+    public void printType() {
+        System.out.println("Данных не достаточно");
+    }
+
     public void setBrand(String brand) {
         if (brand == null || brand.isEmpty()) {
             this.brand = "default";

@@ -4,10 +4,12 @@ public class Trucks extends Transport implements Competing{
     private int bestLapTime;
     private int maximumSpeed;
 
+    private  Weight weight;
+
     public Trucks(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
-    public Trucks(String brand, String model, double engineVolume, int bestLapTime, int maximumSpeed) {
+    public Trucks(String brand, String model, double engineVolume, int bestLapTime, int maximumSpeed, Weight weight) {
         super(brand, model, engineVolume);
         if (bestLapTime <= 0) {
             this.bestLapTime = 20;
@@ -20,6 +22,8 @@ public class Trucks extends Transport implements Competing{
         } else  {
             this.maximumSpeed = maximumSpeed;
         }
+
+        this.weight = weight;
     }
     public void startMoving(){
         System.out.println("Грузовой автомобиль начинает движение...");
@@ -43,6 +47,17 @@ public class Trucks extends Transport implements Competing{
         System.out.println("Максимальная скорость грузового автомобиля " + getMaximumSpeed() +"км/ч");
     }
 
+    @Override
+    public void printType() {
+        if (weight == null) {
+            System.out.println("Данных не достаточно");
+        } else {
+            String from = weight.getFrom() == null ? "" : "от " + weight.getFrom() + " т.";
+            String to = weight.getTo() == null ? "" : "до " + weight.getTo() + " т.";
+            System.out.println("Грузоподъемность авто: " + from + to);
+        }
+    }
+
     public int getBestLapTime() {
         return bestLapTime;
     }
@@ -53,6 +68,14 @@ public class Trucks extends Transport implements Competing{
         } else {
             this.bestLapTime = bestLapTime;
         }
+    }
+
+    public Weight getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Weight weight) {
+        this.weight = weight;
     }
 
     public int getMaximumSpeed() {
