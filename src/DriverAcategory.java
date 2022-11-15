@@ -3,11 +3,25 @@ import transport.PassengerCars;
 import transport.Transport;
 
 public class DriverAcategory extends Driver  {
-    private static final String LICENSE_CATEGORY = "A";
+    private char category;
+    private static final String LEGAL_SYMBOL = "ABC";
 
-    public DriverAcategory(String fullName, boolean driverLicense, int yearsOfExperience) {
-        super(fullName, driverLicense, yearsOfExperience);
+    public DriverAcategory(String fullName, boolean driverLicense, int yearsOfExperience, char category) {
+        super(fullName, driverLicense, yearsOfExperience, category);
+        this.category = category;
        }
+
+    @Override
+    public char getCategory() {
+        return category;
+    }
+
+    public void setCategory(char category) {
+        if (!(LEGAL_SYMBOL.charAt(0) == category)) {
+            throw new IllegalArgumentException("Необходимо указать другую категорию прав у " + getFullName() + "!");
+        }
+        this.category = category;
+    }
 
     private void startMoving() {
         System.out.println("Водитель " + getFullName() + " начал движение.");
@@ -21,8 +35,8 @@ public class DriverAcategory extends Driver  {
         System.out.println("Водитель " + getFullName() + " заправил авто.");
     }
 
-    public void getCategory() {
-        System.out.println("Данный водитель имеет категорию " + LICENSE_CATEGORY);
+    public void CategoryInfo() {
+        System.out.println("Данный водитель имеет категорию " + getCategory());
     }
 
     protected void raceInfo(PassengerCars brand) {

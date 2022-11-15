@@ -42,6 +42,11 @@ public class PassengerCars extends Transport implements Competing{
     }
 
     @Override
+    public boolean service() {
+        return Math.random() > 0.7; //50*50 вероятность прохождения диагностики
+    }
+
+    @Override
     public void pitStop(String brand) {
         System.out.println("Пассажирский автомобиль " + getBrand() + " остановился для тех.обслуживания");
     }

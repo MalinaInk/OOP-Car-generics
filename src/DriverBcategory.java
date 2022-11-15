@@ -2,10 +2,24 @@ import transport.PassengerCars;
 import transport.Trucks;
 
 public class DriverBcategory extends Driver {
-    private static final String LICENSE_CATEGORY = "B";
+    private char category;
+    private static final String LEGAL_SYMBOL = "ABC";
 
-    public DriverBcategory(String fullName, boolean driverLicense, int yearsOfExperience) {
-        super(fullName, driverLicense, yearsOfExperience);
+    public DriverBcategory(String fullName, boolean driverLicense, int yearsOfExperience, char category) {
+        super(fullName, driverLicense, yearsOfExperience, category);
+        setCategory(category);
+    }
+
+    @Override
+    public char getCategory() {
+        return category;
+    }
+
+    public void setCategory(char category) {
+        if (!(LEGAL_SYMBOL.charAt(1) == category)) {
+            throw new IllegalArgumentException("Необходимо указать другую категорию прав у " + getFullName() + "!");
+        }
+        this.category = category;
     }
 
     private void startMoving() {
@@ -20,8 +34,8 @@ public class DriverBcategory extends Driver {
         System.out.println("Водитель " + getFullName() + " заправил авто.");
     }
 
-    public void getCategory() {
-        System.out.println("Данный водитель имеет категорию " + LICENSE_CATEGORY);
+    public void CategoryInfo() {
+        System.out.println("Данный водитель имеет категорию " + getCategory());
     }
     protected void raceInfo(Trucks brand) {
         System.out.println(" Водитель " + getFullName() + " управляет автомобилем " + brand.getBrand()+ " и будет участвовать в заезде");

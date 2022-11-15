@@ -36,6 +36,8 @@ public abstract class Transport {
         System.out.println("Данных не достаточно");
     }
 
+    public abstract boolean service();
+
     public void setBrand(String brand) {
         if (brand == null || brand.isEmpty()) {
             this.brand = "default";
