@@ -4,7 +4,7 @@ import driver.DriverBcategory;
 import driver.DriverCcategory;
 import transport.*;
 
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,8 +27,8 @@ public class Main {
 
         Trucks iveco = new Trucks("Iveco", "U78T3", 3.4, 24, 232, Weight.N1);
         iveco.addDriver(new DriverBcategory("Мистер Икс", true, 10, 'B'));
-        iveco.addMechanic(dmitry, anton);
-        iveco.addSponsor(adidas, winline);
+        iveco.addMechanic(dmitry, anton, anton);
+        iveco.addSponsor(adidas, winline, adidas);
 
 //        Trucks daf = new Trucks("Daf", "900T7", 3.4);
 //        Trucks tatra = new Trucks("Tatra", "W007", 3.4);
@@ -77,7 +77,7 @@ public class Main {
 //        bombila.getCategory();
 //        ankai.printType();
 
-        List<Transport> transports = List.of(lada, iveco, ankai);
+        Set<Transport> transports = new HashSet<>(Arrays.asList(lada, iveco, ankai));
 
         ServiceStation serviceStation = new ServiceStation(); //создаем объект класса для работы с очередью
         serviceStation.addPassengerCar(lada); //вызываем поочередно методы добавления и обслуживания

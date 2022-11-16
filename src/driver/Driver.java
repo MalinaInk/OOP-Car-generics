@@ -2,6 +2,8 @@ package driver;
 
 import transport.Transport;
 
+import java.util.Objects;
+
 public class Driver<A extends Transport>{
     private String fullName;
     private boolean driverLicense;
@@ -82,5 +84,18 @@ public class Driver<A extends Transport>{
     @Override
     public String toString() {
         return fullName + ", стаж вождения: " + yearsOfExperience + ", категория: " + category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver<?> driver = (Driver<?>) o;
+        return driverLicense == driver.driverLicense && yearsOfExperience == driver.yearsOfExperience && Objects.equals(fullName, driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, driverLicense, yearsOfExperience);
     }
 }
