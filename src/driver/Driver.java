@@ -1,14 +1,19 @@
-import transport.PassengerCars;
+package driver;
+
 import transport.Transport;
 
-public class Driver <A extends Transport>{
+import java.util.Objects;
+
+public class Driver<A extends Transport>{
     private String fullName;
     private boolean driverLicense;
     private int yearsOfExperience;
+    private char category;
+    private static final String LEGAL_SYMBOL = "ABC";
 
 
 
-    public Driver(String fullName, boolean driverLicense, int yearsOfExperience) {
+    public Driver(String fullName, boolean driverLicense, int yearsOfExperience, char category) {
         if (fullName == null || fullName.isEmpty()) {
             this.fullName = "без регистрации";
         } else {
@@ -20,6 +25,19 @@ public class Driver <A extends Transport>{
             this.yearsOfExperience = Math.abs(yearsOfExperience);
         } else {
             this.yearsOfExperience = yearsOfExperience;
+        }
+        setCategory(category);
+    }
+
+    public char getCategory() {
+        return category;
+    }
+
+    public void setCategory(char category) {
+        if (!(LEGAL_SYMBOL.charAt(0) == category) || !(LEGAL_SYMBOL.charAt(1) == category) || !(LEGAL_SYMBOL.charAt(2) == category)) {
+            throw new IllegalArgumentException("Недопустимый символ.");
+        } else {
+            this.category = category;
         }
     }
 
@@ -60,5 +78,24 @@ public class Driver <A extends Transport>{
     }
 
     protected void raceInfo (A brand) {
+        System.out.println();
+    }
+
+    @Override
+    public String toString() {
+        return fullName + ", стаж вождения: " + yearsOfExperience + ", категория: " + category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver<?> driver = (Driver<?>) o;
+        return driverLicense == driver.driverLicense && yearsOfExperience == driver.yearsOfExperience && Objects.equals(fullName, driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, driverLicense, yearsOfExperience);
     }
 }

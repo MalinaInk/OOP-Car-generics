@@ -58,9 +58,21 @@ public class Buses extends Transport implements Competing {
         }
     }
 
+    @Override
+    public boolean service() {
+        System.out.println("Автобус " + getBrand() + " " + getModel() + " в диагностике не нуждается.");
+        return true;
+    }
+    @Override
+    public void repair() {
+        System.out.println("Автобус " + getBrand() + " " + getModel() + " починен");
+    }
+
     public Capacity getCapacity() {
         return capacity;
     }
+
+
 
     public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
