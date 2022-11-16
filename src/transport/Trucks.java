@@ -62,7 +62,10 @@ public class Trucks extends Transport implements Competing{
     public boolean service() {
         return Math.random() > 0.75; //50*50 вероятность прохождения диагностики
         }
-
+    @Override
+    public void repair() {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " починен");
+    }
     public int getBestLapTime() {
         return bestLapTime;
     }

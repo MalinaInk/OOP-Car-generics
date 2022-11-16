@@ -47,6 +47,11 @@ public class PassengerCars extends Transport implements Competing{
     }
 
     @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена");
+    }
+
+    @Override
     public void pitStop(String brand) {
         System.out.println("Пассажирский автомобиль " + getBrand() + " остановился для тех.обслуживания");
     }

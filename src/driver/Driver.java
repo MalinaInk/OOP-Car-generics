@@ -1,7 +1,8 @@
-import transport.PassengerCars;
+package driver;
+
 import transport.Transport;
 
-public class Driver <A extends Transport>{
+public class Driver<A extends Transport>{
     private String fullName;
     private boolean driverLicense;
     private int yearsOfExperience;
@@ -76,5 +77,10 @@ public class Driver <A extends Transport>{
 
     protected void raceInfo (A brand) {
         System.out.println();
+    }
+
+    @Override
+    public String toString() {
+        return fullName + ", стаж вождения: " + yearsOfExperience + ", категория: " + category;
     }
 }

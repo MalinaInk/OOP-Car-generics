@@ -63,6 +63,10 @@ public class Buses extends Transport implements Competing {
         System.out.println("Автобус " + getBrand() + " " + getModel() + " в диагностике не нуждается.");
         return true;
     }
+    @Override
+    public void repair() {
+        System.out.println("Автобус " + getBrand() + " " + getModel() + " починен");
+    }
 
     public Capacity getCapacity() {
         return capacity;

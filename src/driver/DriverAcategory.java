@@ -1,13 +1,15 @@
-import transport.Buses;
+package driver;
+
 import transport.PassengerCars;
 
-public class DriverCcategory extends Driver{
+public class DriverAcategory extends Driver {
     private char category;
     private static final String LEGAL_SYMBOL = "ABC";
-    public DriverCcategory(String fullName, boolean driverLicense, int yearsOfExperience, char category) {
+
+    public DriverAcategory(String fullName, boolean driverLicense, int yearsOfExperience, char category) {
         super(fullName, driverLicense, yearsOfExperience, category);
-        setCategory(category);
-    }
+        this.category = category;
+       }
 
     @Override
     public char getCategory() {
@@ -15,10 +17,10 @@ public class DriverCcategory extends Driver{
     }
 
     public void setCategory(char category) {
-        if (!(LEGAL_SYMBOL.charAt(2) == category)) {
+        if (!(LEGAL_SYMBOL.charAt(0) == category)) {
             throw new IllegalArgumentException("Необходимо указать другую категорию прав у " + getFullName() + "!");
         }
-           this.category = category;
+        this.category = category;
     }
 
     private void startMoving() {
@@ -32,11 +34,17 @@ public class DriverCcategory extends Driver{
     private void refuelTheCar() {
         System.out.println("Водитель " + getFullName() + " заправил авто.");
     }
+
     public void CategoryInfo() {
         System.out.println("Данный водитель имеет категорию " + getCategory());
     }
 
-    protected void raceInfo(Buses brand) {
+    protected void raceInfo(PassengerCars brand) {
         System.out.println(" Водитель " + getFullName() + " управляет автомобилем " + brand.getBrand()+ " и будет участвовать в заезде");
+        }
+
+    @Override
+    public String toString() {
+       return getFullName() + ", стаж вождения: " + getYearsOfExperience() + ", категория: A";
     }
 }
